@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--namespace:表示接口的全路径-->
+<mapper namespace="com.dyqking.gmall.manage.mapper.BaseAttrInfoMapper">
+    <resultMap id="baseAttrInfoMap" type="com.dyqking.gmall.bean.BaseAttrInfo" autoMapping="true">
+        <id column="id" property="id"></id>
+        <collection property="attrValueList" ofType="com.dyqking.gmall.bean.BaseAttrValue" autoMapping="true">
+            <id property="id" column="attr_value_id"></id>
+        </collection>
+    </resultMap>
+
+    <select id="selectAttrInfoListByIds" resultMap="baseAttrInfoMap">
+        SELECT ai.id,ai.attr_name,ai.catalog3_id, av.id attr_value_id ,av.attr_id ,av.value_name
+        FROM base_attr_info ai INNER JOIN base_attr_value av ON ai.id=av.attr_id
+        WHERE av.id IN (${valueIds})
+    </select>
+</mapper>
