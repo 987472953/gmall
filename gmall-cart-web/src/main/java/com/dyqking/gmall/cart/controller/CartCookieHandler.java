@@ -18,10 +18,14 @@ import java.util.List;
 @Component
 public class CartCookieHandler {
 
-    // 定义购物车名称
-    private String cookieCartName = "CART";
-    // 设置cookie 过期时间
-    private int COOKIE_CART_MAXAGE = 7 * 24 * 3600;
+    /**
+     * 定义购物车名称
+     */
+    private final String cookieCartName = "CART";
+    /**
+     * 设置cookie 过期时间
+     */
+    private final int COOKIE_CART_MAXAGE = 7 * 24 * 3600;
 
     @Reference
     private ItemService itemService;
@@ -58,7 +62,6 @@ public class CartCookieHandler {
             cartInfo.setUserId(userId);
             cartInfo.setSkuNum(skuNum);
 
-
             cartInfoList.add(cartInfo);
         }
 
@@ -80,7 +83,8 @@ public class CartCookieHandler {
     }
 
     public void checkCart(HttpServletRequest request, HttpServletResponse response, String skuId, String isChecked) {
-        List<CartInfo> cartInfoList = getCartList(request); // 获得cookie中购物车
+        // 获得cookie中购物车
+        List<CartInfo> cartInfoList = getCartList(request);
         for (CartInfo cartInfo : cartInfoList) {
             if (cartInfo.getSkuId().equals(skuId)) {
                 cartInfo.setIsChecked(isChecked);

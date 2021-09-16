@@ -12,15 +12,15 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
 import java.net.URLEncoder;
 import java.util.Map;
 
+/**
+ * 权限过滤
+ */
 @Component
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
-
-    //用户进入控制器之前
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
@@ -50,13 +50,16 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             e.printStackTrace();
             return true;
         }
-        LoginRequie loginRequireAnnotation = handlerMethod.getMethodAnnotation(LoginRequie.class);
-        if (loginRequireAnnotation != null) {//方法上有LoginRequie注解的才进行拦截
-            String remoteAddr = request.getHeader("x-forwarded-for"); // 获得盐， 请注意nginx中的配置
+        LoginRequire loginRequireAnnotation = handlerMethod.getMethodAnnotation(LoginRequire.class);
+        //方法上有LoginRequie注解的才进行拦截
+        if (loginRequireAnnotation != null) {
+            // 获得盐， 请注意nginx中的配置
+            String remoteAddr = request.getHeader("x-forwarded-for");
             //http://passport.atguigu.com/verify?token=...&currentIp=192.168.183.1
             //进行是否已登录的验证
             String result = HttpClientUtil.doGet(WebConst.VERIFY_ADDRESS + "?token=" + token + "&currentIp=" + remoteAddr);
-            if ("success".equals(result)) { // 认证成功， 将userId放入作用域
+            // 认证成功， 将userId放入作用域
+            if ("success".equals(result)) {
                 Map map = getUserMapByToken(token);
                 String userId = (String) map.get("userId");
                 request.setAttribute("userId", userId);
@@ -91,13 +94,17 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         return map;
     }
 
-    //进入控制器之后，视图渲染之前
+    /**
+     * 进入控制器之后，视图渲染之前
+     */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         super.postHandle(request, response, handler, modelAndView);
     }
 
-    //视图渲染之后
+    /**
+     * 视图渲染之后
+     */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         super.afterCompletion(request, response, handler, ex);

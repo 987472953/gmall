@@ -7,25 +7,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="gmall-web-util" />
-        <module name="gmall-bean" />
-        <module name="gmall-common-util" />
-        <module name="gmall-manage-web" />
-        <module name="gmall-usermanage" />
-        <module name="gmall-payment" />
-        <module name="gmall-llist-service" />
-        <module name="gmall-order-service" />
-        <module name="fastdfs-client-java" />
-        <module name="gmall-cart-service" />
-        <module name="gmall-list-web" />
-        <module name="gmall-order-web" />
-        <module name="gmall-manage-service" />
-        <module name="gmall-passport-web" />
-        <module name="gware-manage" />
-        <module name="gmall-service-util" />
-        <module name="gmall-cart-web" />
         <module name="gmall-interface" />
+        <module name="gmall-list-web" />
+        <module name="gware-manage" />
+        <module name="gmall-passport-web" />
+        <module name="gmall-cart-service" />
+        <module name="gmall-service-util" />
+        <module name="gmall-order-web" />
+        <module name="gmall-usermanage" />
+        <module name="gmall-web-util" />
+        <module name="gmall-order-service" />
+        <module name="gmall-bean" />
+        <module name="gmall-manage-service" />
+        <module name="gmall-manage-web" />
+        <module name="fastdfs-client-java" />
+        <module name="gmall-payment" />
+        <module name="gmall-common-util" />
+        <module name="gmall-llist-service" />
         <module name="gmall-item-web" />
+        <module name="gmall-cart-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

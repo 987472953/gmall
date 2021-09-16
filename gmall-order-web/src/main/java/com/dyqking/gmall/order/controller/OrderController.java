@@ -6,13 +6,11 @@ import com.dyqking.gmall.bean.*;
 import com.dyqking.gmall.bean.enums.OrderStatus;
 import com.dyqking.gmall.bean.enums.ProcessStatus;
 import com.dyqking.gmall.common.util.HttpClientUtil;
-import com.dyqking.gmall.config.LoginRequie;
+import com.dyqking.gmall.config.LoginRequire;
 import com.dyqking.gmall.service.CartService;
 import com.dyqking.gmall.service.ItemService;
 import com.dyqking.gmall.service.OrderService;
 import com.dyqking.gmall.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +37,7 @@ public class OrderController {
     private OrderService orderService;
 
     @RequestMapping("trade")
-    @LoginRequie
+    @LoginRequire
     public String trade(HttpServletRequest request) {
         String userId = (String) request.getAttribute("userId");
         List<UserAddress> userAddressList = userService.getUserAddressList(userId);
@@ -76,7 +74,7 @@ public class OrderController {
     }
 
     @RequestMapping("submitOrder")
-    @LoginRequie
+    @LoginRequire
     public String submitOrder(OrderInfo orderInfo, HttpServletRequest request) {
         String userId = (String) request.getAttribute("userId");
 
