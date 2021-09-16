@@ -11,7 +11,6 @@ public enum OrderStatus {
 
     private String comment ;
 
-
     OrderStatus(String comment ){
         this.comment=comment;
     }
