@@ -5,6 +5,9 @@ import tk.mybatis.mapper.common.BaseMapper;
 
 import java.util.List;
 
+/**
+ * @author dengyiqing
+ */
 public interface CartInfoMapper extends BaseMapper<CartInfo> {
 
     /**

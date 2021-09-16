@@ -8,22 +8,22 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 /**
- * @param
- * @return
+ * @author dengyiqing
  */
 public class CookieUtil {
 
 
     public static String getCookieValue(HttpServletRequest request, String cookieName, boolean isDecoder) {
         Cookie[] cookies = request.getCookies();
-        if (cookies == null || cookieName == null){
+        if (cookies == null || cookieName == null) {
             return null;
         }
         String retValue = null;
         try {
             for (int i = 0; i < cookies.length; i++) {
                 if (cookies[i].getName().equals(cookieName)) {
-                    if (isDecoder) {//如果涉及中文
+                    //如果涉及中文
+                    if (isDecoder) {
                         retValue = URLDecoder.decode(cookies[i].getValue(), "UTF-8");
                     } else {
                         retValue = cookies[i].getValue();
@@ -38,7 +38,7 @@ public class CookieUtil {
     }
 
 
-    public static   void setCookie(HttpServletRequest request, HttpServletResponse response, String cookieName, String cookieValue, int cookieMaxage, boolean isEncode) {
+    public static void setCookie(HttpServletRequest request, HttpServletResponse response, String cookieName, String cookieValue, int cookieMaxage, boolean isEncode, String path) {
         try {
             if (cookieValue == null) {
                 cookieValue = "";
@@ -46,17 +46,25 @@ public class CookieUtil {
                 cookieValue = URLEncoder.encode(cookieValue, "utf-8");
             }
             Cookie cookie = new Cookie(cookieName, cookieValue);
-            if (cookieMaxage >= 0)
+            if (cookieMaxage >= 0) {
                 cookie.setMaxAge(cookieMaxage);
-            if (null != request)// 设置域名的cookie
+            }
+            // 设置域名的cookie
+            if (null != request) {
                 cookie.setDomain(getDomainName(request));
-            cookie.setPath("/");
+            }
+            //作用域
+            cookie.setPath(path);
+
             response.addCookie(cookie);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public static void setCookie(HttpServletRequest request, HttpServletResponse response, String cookieName, String cookieValue, int cookieMaxage, boolean isEncode) {
+        setCookie(request, response, cookieName, cookieValue, cookieMaxage, isEncode, "/");
+    }
 
 
     /**

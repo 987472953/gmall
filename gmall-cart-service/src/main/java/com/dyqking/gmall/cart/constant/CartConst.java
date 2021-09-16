@@ -8,6 +8,6 @@ public class CartConst {
 
     public static final String USER_CHECKED_KEY_SUFFIX =":checked";
 
-    public static final String  USERINFOKEY_SUFFIX=":info";
+    public static final String USER_INFO_KEY_SUFFIX =":info";
 
 }

@@ -12,6 +12,7 @@ import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import redis.clients.jedis.Jedis;
 
 import java.util.List;
@@ -48,14 +49,14 @@ public class ItemServiceImpl implements ItemService {
 
             jedis = redisUtil.getJedis();
             SkuInfo skuInfo = null;
-            String skuInfoKey = ManageConst.SKUKEY_PREFIX + skuId + ManageConst.SKUKEY_SUFFIX;
+            String skuInfoKey = ManageConst.SKU_KEY_PREFIX + skuId + ManageConst.SKU_KEY_SUFFIX;
 
             if (jedis.exists(skuInfoKey)) {
                 String skuJson = jedis.get(skuInfoKey);
                 skuInfo = JSON.parseObject(skuJson, SkuInfo.class);
             } else {
                 skuInfo = getSkuInfoDB(skuId);
-                jedis.setex(skuInfoKey, ManageConst.SKUKEY_TIMEOUT, JSON.toJSONString(skuInfo));
+                jedis.setex(skuInfoKey, ManageConst.SKU_KEY_TIMEOUT, JSON.toJSONString(skuInfo));
             }
             return skuInfo;
         } catch (Exception e) {
@@ -77,23 +78,23 @@ public class ItemServiceImpl implements ItemService {
 
         try {
             jedis = redisUtil.getJedis();
-            String skuInfoKey = ManageConst.SKUKEY_PREFIX + skuId + ManageConst.SKUKEY_SUFFIX;
+            String skuInfoKey = ManageConst.SKU_KEY_PREFIX + skuId + ManageConst.SKU_KEY_SUFFIX;
 
             String skuJson = jedis.get(skuInfoKey);
             if (skuJson == null || skuJson.length() == 0) {
                 // redis 无数据 分布式锁
-                String lockKey = ManageConst.SKUKEY_PREFIX + skuId + ManageConst.SKULOCK_SUFFIX;
+                String lockKey = ManageConst.SKU_KEY_PREFIX + skuId + ManageConst.SKU_LOCK_SUFFIX;
 
                 // value 的值不影响返回的值 若设置锁成功则返回OK  否则返回null
                 //jedis.setex(lockKey, ManageConst.SKULOCK_EXPIRE_PX, "doing");
-                String lock = jedis.set(lockKey, "OK", "NX", "PX", ManageConst.SKULOCK_EXPIRE_PX);
+                String lock = jedis.set(lockKey, "OK", "NX", "PX", ManageConst.SKU_LOCK_EXPIRE_PX);
 
                 if ("OK".equals(lock)) {
                     //成功获得锁
                     skuInfo = getSkuInfoDB(skuId);
                     String skuRedisStr = JSON.toJSONString(skuInfo);
                     //不管skuInfo的数据是否为空都放入redis
-                    jedis.setex(skuInfoKey, ManageConst.SKUKEY_TIMEOUT, skuRedisStr);
+                    jedis.setex(skuInfoKey, ManageConst.SKU_KEY_TIMEOUT, skuRedisStr);
                     jedis.del(lockKey);
 
                     return skuInfo;

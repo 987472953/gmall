@@ -23,12 +23,11 @@ public class ListController {
     private ManageService manageService;
 
     @RequestMapping("list.html")
-//   @ResponseBody
     public String getList(SkuLsParams skuLsParams, HttpServletRequest request) {
 
         skuLsParams.setPageSize(1);
         SkuLsResult skuLsResult = listService.search(skuLsParams);
-//       return JSON.toJSONString(search);
+
         List<SkuLsInfo> skuLsInfoList = skuLsResult.getSkuLsInfoList();
         request.setAttribute("skuLsInfoList", skuLsInfoList);
 
