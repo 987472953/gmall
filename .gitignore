@@ -1,9 +1,4 @@
-*.css
-*.js
-*.html
-*.class
-*.png
-<<<<<<< HEAD
-*.jpg
-=======
->>>>>>> db4336f... gmall商城 last
+target
+*/iml
+.idea
+out

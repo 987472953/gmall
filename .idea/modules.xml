@@ -23,7 +23,6 @@
       <module fileurl="file://$PROJECT_DIR$/gmall-usermanage/gmall-usermanage.iml" filepath="$PROJECT_DIR$/gmall-usermanage/gmall-usermanage.iml" />
       <module fileurl="file://$PROJECT_DIR$/gmall-web-util/gmall-web-util.iml" filepath="$PROJECT_DIR$/gmall-web-util/gmall-web-util.iml" />
       <module fileurl="file://$PROJECT_DIR$/gware-manage/gware-manage.iml" filepath="$PROJECT_DIR$/gware-manage/gware-manage.iml" />
-      <module fileurl="file://$PROJECT_DIR$/suanfa/suanfa.iml" filepath="$PROJECT_DIR$/suanfa/suanfa.iml" />
     </modules>
   </component>
 </project>
