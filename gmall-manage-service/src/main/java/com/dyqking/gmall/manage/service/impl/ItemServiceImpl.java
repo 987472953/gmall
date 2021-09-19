@@ -41,7 +41,7 @@ public class ItemServiceImpl implements ItemService {
         try {
 //        return getSkuInfoJedis(skuId);
             Config config = new Config();
-            config.useSingleServer().setAddress("redis://139.224.30.125:8989").setPassword("dyq*1010A");
+            config.useSingleServer().setAddress("redis://121.5.63.196:8989").setPassword("dyq*1010A");
             RedissonClient redissonClient = Redisson.create(config);
             myLock = redissonClient.getLock("myLock");
             myLock.lock(10, TimeUnit.SECONDS);

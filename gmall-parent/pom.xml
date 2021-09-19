@@ -13,6 +13,19 @@
         <module>../gmall-common-util</module>
         <module>../gmall-service-util</module>
         <module>../gmall-web-util</module>
+        <module>../gmall-cart-service</module>
+        <module>../gmall-cart-web</module>
+        <module>../gmall-item-web</module>
+        <module>../gmall-list-web</module>
+        <module>../gmall-list-service</module>
+        <module>../gmall-manage-service</module>
+        <module>../gmall-manage-web</module>
+        <module>../gmall-order-service</module>
+        <module>../gmall-order-web</module>
+        <module>../gmall-passport-web</module>
+        <module>../gmall-payment</module>
+        <module>../gmall-usermanage</module>
+        <module>../gware-manage</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
@@ -36,6 +49,7 @@
         <jest.version>5.3.3</jest.version>
         <jna.version>4.5.1</jna.version>
         <beanUtils.version>1.9.3</beanUtils.version>
+        <jackson-version>2.9.8</jackson-version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -50,6 +64,23 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+
+            <!--jackson-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson-version}</version>
             </dependency>
 
             <dependency>

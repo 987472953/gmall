@@ -2,3 +2,7 @@ target
 out
 .idea
 /fastdfs-client-java/
+*.iml
+gmall-*/*.iml
+gware-manage/*.iml
+

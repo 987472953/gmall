@@ -19,7 +19,7 @@ public class ProducerTest {
         8.  发送消息
         9.  关闭
          */
-        ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory("root", "dyq*1010A", "tcp://139.224.30.125:61616");
+        ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory("root", "dyq*1010A", "tcp://121.5.63.196:61616");
         Connection connection = activeMQConnectionFactory.createConnection();
 
         connection.start();
