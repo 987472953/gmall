@@ -26,6 +26,7 @@
         <module>../gmall-payment</module>
         <module>../gmall-usermanage</module>
         <module>../gware-manage</module>
+        <module>../fastdfs-client-java</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
