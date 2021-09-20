@@ -9,9 +9,9 @@
         <relativePath>../gmall-parent/pom.xml</relativePath>
     </parent>
     <groupId>com.dyqking.gmall</groupId>
-    <artifactId>gmall-llist-service</artifactId>
+    <artifactId>gmall-list-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gmall-llist-service</name>
+    <name>gmall-list-service</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
